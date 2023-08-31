@@ -1,4 +1,5 @@
 
+import 'package:chat/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -83,6 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 10,
                 ),
                 CustomFormTextField(
+
                   onChanged: (data) {
                     password = data;
                   },
@@ -93,20 +95,23 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 CustomButon(
                 onTap: ()async{
-                  try {
-                    final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                      email: email!,
-                      password: password!,
-                    );
-                  } on FirebaseAuthException catch (e) {
-                    if (e.code == 'weak-password') {
-                      print('The password provided is too weak.');
-                    } else if (e.code == 'email-already-in-use') {
-                      print('The account already exists for that email.');
-                    }
-                  } catch (e) {
-                    print(e);
-                  }
+                 if(formKey.currentState!.validate()){
+                   try {
+                     final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                       email: email!,
+                       password: password!,
+                     );
+                     Navigator.pushNamed(context, LoginPage.id);
+                   } on FirebaseAuthException catch (e) {
+                     if (e.code == 'weak-password') {
+                       print('The password provided is too weak.');
+                     } else if (e.code == 'email-already-in-use') {
+                       print('The account already exists for that email.');
+                     }
+                   } catch (e) {
+                     print(e);
+                   }
+                 }
                 },
 
                   text: 'REGISter',),
