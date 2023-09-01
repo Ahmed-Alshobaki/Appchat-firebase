@@ -20,11 +20,15 @@ class _ChatState extends State<ChatPage> {
   Widget build(BuildContext context) {
     TextEditingController textField = TextEditingController();
     CollectionReference messages = FirebaseFirestore.instance.collection('messages');
+    List<Message1> messagess = [];
     return FutureBuilder<QuerySnapshot<Object?>>(
       future: messages.get()
-      , builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+      , builder: ( context,  AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
         if (snapshot.hasData){
-          print(snapshot.data!.docs[0]["message"]);
+          for(int i = 0; i < snapshot.data!.docs.length; i++){
+            messagess.add(Message1.fromjosn(snapshot.data!.docs[i]));
+          }
+
           return   Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
@@ -44,19 +48,13 @@ class _ChatState extends State<ChatPage> {
             body: Column(
               children: [
                 Expanded(
-                  child: ListView(
-                    children: [
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                      ChatBubleForFriend(message: Message("zondfgdffdgrdgfdgdfgfdSgdfgdffdgdfggd","1"),),
-                    ],
+                  child: ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: ( context, int index) {
+                    return ChatBubleForFriend(message: messagess[index],);
+
+                  },
+
                   ),
                 ),
                 Container(
@@ -64,9 +62,7 @@ class _ChatState extends State<ChatPage> {
                   child: TextField(
                     controller: textField,
                     onSubmitted: (val){
-                      messages.add({
-                        "message":val.toString()
-                      });
+
                       textField.clear();
                     },
                     decoration: InputDecoration(

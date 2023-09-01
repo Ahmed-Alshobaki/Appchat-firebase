@@ -10,7 +10,7 @@ class ChatBuble extends StatelessWidget {
     required this.message,
   }) : super(key: key);
 
-  final Message message;
+  final Message1 message;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -27,7 +27,7 @@ class ChatBuble extends StatelessWidget {
           color: kPrimaryColor,
         ),
         child: Text(
-          message.message,
+          message.message1,
           style: TextStyle(
             color: Colors.white,
           ),
@@ -43,7 +43,7 @@ class ChatBubleForFriend extends StatelessWidget {
     required this.message,
   }) : super(key: key);
 
-  final Message message;
+  final Message1 message;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -60,7 +60,7 @@ class ChatBubleForFriend extends StatelessWidget {
           color: Color(0xff006D84),
         ),
         child: Text(
-          message.message,
+          message.message1,
           style: TextStyle(
             color: Colors.white,
           ),

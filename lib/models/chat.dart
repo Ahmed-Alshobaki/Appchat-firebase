@@ -9,13 +9,13 @@ class ChatBuble extends StatelessWidget {
     Key? key,
     required this.message,
   }) : super(key: key);
-  final Message message;
+  final Message1 message;
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        padding: EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
+        padding: EdgeInsets.only(left: 16, top: 25, bottom: 25, right: 32),
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -26,7 +26,7 @@ class ChatBuble extends StatelessWidget {
           color: kPrimaryColor,
         ),
         child: Text(
-          message.message,
+          message.message1,
           style: TextStyle(
             color: Colors.white,
           ),
@@ -42,13 +42,13 @@ class ChatBubleForFriend extends StatelessWidget {
     required this.message,
   }) : super(key: key);
 
-  final Message message;
+  final Message1 message;
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, bottom: 25, right: 25),
+        padding: EdgeInsets.only(left: 12, top: 20, bottom: 20, right: 20),
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -59,7 +59,7 @@ class ChatBubleForFriend extends StatelessWidget {
           color: Color(0xff006D84),
         ),
         child: Text(
-          message.message,
+          message.message1,
           style: TextStyle(
             color: Colors.white,
           ),
