@@ -48,7 +48,7 @@ class ChatBubleForFriend extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        padding: EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
+        padding: EdgeInsets.only(left: 16, top: 25, bottom: 25, right: 25),
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
