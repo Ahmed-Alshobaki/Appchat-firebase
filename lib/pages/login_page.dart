@@ -1,5 +1,3 @@
-import 'dart:ffi';
-import 'dart:math';
 
 import 'package:chat/pages/resgister_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -108,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                           email: email!,
                           password: password!,
                         );
-                        Navigator.pushNamed(context, ChatPage.id);
+                        Navigator.pushNamed(context, ChatPage.id,arguments: email);
                       } on FirebaseAuthException catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(""
                             "there was an error , please try agian")));

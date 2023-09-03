@@ -18,12 +18,14 @@ class ChatPage extends StatefulWidget {
 class _ChatState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
+    final _controller =ScrollController();
     TextEditingController textField = TextEditingController();
     CollectionReference messages = FirebaseFirestore.instance.collection('messages');
     final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('messages').snapshots();
+    final String email =ModalRoute.of(context)!.settings.arguments as String;
 
     return StreamBuilder<QuerySnapshot<Object?>>(
-      stream: messages.orderBy("Time").snapshots()
+      stream: messages.orderBy("Time",descending: true).snapshots()
       , builder: ( context,  AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
         if (snapshot.hasData){
           List<Message1> messagess = [];
@@ -50,9 +52,11 @@ class _ChatState extends State<ChatPage> {
               children: [
                 Expanded(
                   child: ListView.builder(
+                    reverse: true,
+                    controller: _controller,
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: ( context, int index) {
-                    return ChatBubleForFriend(message: messagess[index],);
+                    return messagess[index].id==email ?  ChatBuble(message: messagess[index],):ChatBubleForFriend(message: messagess[index]);
 
                   },
 
@@ -66,8 +70,10 @@ class _ChatState extends State<ChatPage> {
                       messages.add({
                         "messages":val,
                         "Time" :DateTime.now(),
+                        "id" : email,
                       });
                       textField.clear();
+                      _controller.animateTo(_controller.position.minScrollExtent, duration: Duration(seconds: 3), curve: Curves.fastEaseInToSlowEaseOut);
                     },
                     decoration: InputDecoration(
                         suffixIcon: Icon(Icons.send),
