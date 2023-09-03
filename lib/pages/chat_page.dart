@@ -20,15 +20,16 @@ class _ChatState extends State<ChatPage> {
   Widget build(BuildContext context) {
     TextEditingController textField = TextEditingController();
     CollectionReference messages = FirebaseFirestore.instance.collection('messages');
-    List<Message1> messagess = [];
-    return FutureBuilder<QuerySnapshot<Object?>>(
-      future: messages.get()
+    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('messages').snapshots();
+
+    return StreamBuilder<QuerySnapshot<Object?>>(
+      stream: messages.orderBy("Time").snapshots()
       , builder: ( context,  AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
         if (snapshot.hasData){
+          List<Message1> messagess = [];
           for(int i = 0; i < snapshot.data!.docs.length; i++){
             messagess.add(Message1.fromjosn(snapshot.data!.docs[i]));
           }
-
           return   Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
@@ -62,7 +63,10 @@ class _ChatState extends State<ChatPage> {
                   child: TextField(
                     controller: textField,
                     onSubmitted: (val){
-
+                      messages.add({
+                        "messages":val,
+                        "Time" :DateTime.now(),
+                      });
                       textField.clear();
                     },
                     decoration: InputDecoration(
