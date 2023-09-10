@@ -35,7 +35,7 @@ class LoginPageState extends StatelessWidget {
            isLoading = false;
          }if(state is Loginsuccess){
            isLoading = true;
-           Navigator.pushReplacementNamed(context, ChatPage.id,arguments:email);
+           Navigator.pushReplacementNamed(context, Chat.id,arguments:email);
          }if(state is Loginloading){
            isLoading = false;
          }
@@ -128,7 +128,7 @@ class LoginPageState extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, RegisterPage.id);
+                            Navigator.pushNamed(context, RegisterPageState.id);
                           },
                           child: Text(
                             '  Register',
