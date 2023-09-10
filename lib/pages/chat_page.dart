@@ -6,16 +6,17 @@ import '../constants.dart';
 import '../models/chat.dart';
 
 class ChatPage extends StatefulWidget {
-   ChatPage({super.key});
+
+   ChatPage({Key? key}) : super(key: key);
   static String id = 'ChatPage';
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 
   @override
-  State<ChatPage> createState() => _ChatState();
+  State<ChatPage> createState() => ChatState();
 }
 
-class _ChatState extends State<ChatPage> {
+class ChatState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     final _controller =ScrollController();

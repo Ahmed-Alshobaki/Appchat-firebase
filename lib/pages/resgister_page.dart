@@ -108,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
                          email: email!,
                          password: password!,
                        );
-                       Navigator.pushNamed(context, LoginPage.id);
+                       Navigator.pushNamed(context, LoginPageState.id);
                      } on FirebaseAuthException catch (e) {
                        if (e.code == 'weak-password') {
                          print('The password provided is too weak.');

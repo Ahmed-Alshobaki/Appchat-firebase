@@ -16,6 +16,9 @@ class ChatBuble extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
+        constraints: BoxConstraints(
+            maxWidth: MediaQuery.sizeOf(context).width-MediaQuery.sizeOf(context).width*2
+        ),
         padding: EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
@@ -49,6 +52,9 @@ class ChatBubleForFriend extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.sizeOf(context).width-MediaQuery.sizeOf(context).width*2,
+        ),
         padding: EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
