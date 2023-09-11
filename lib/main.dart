@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/chat/chat_cubit.dart';
 import 'cubit/login/login_cubit.dart';
+import 'cubit/observer/observer.dart';
 import 'cubit/register/register_cubit.dart';
 import 'firebase_options.dart';
 
@@ -17,6 +18,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(ScholarChat());
+  Bloc.observer = observerAll();
+
 }
 
 class ScholarChat extends StatelessWidget {
