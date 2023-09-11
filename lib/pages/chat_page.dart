@@ -17,8 +17,11 @@ class Chat extends StatelessWidget {
     final String email =ModalRoute.of(context)!.settings.arguments as String;
 
     return  BlocConsumer<ChatCubit, ChatState>(
-  listener: (context, state) {
-    // TODO: implement listener
+      listener: (context, state) {
+        if(state is Chatsuccess){
+
+
+        }
   },
   builder: (context, state) {
     return Scaffold(

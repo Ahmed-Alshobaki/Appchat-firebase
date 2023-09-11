@@ -54,9 +54,9 @@ class ChatBubleForFriend extends StatelessWidget {
         constraints: BoxConstraints(
             maxWidth: MediaQuery.sizeOf(context).width-MediaQuery.sizeOf(context).width/2
         ),
-        padding: EdgeInsets.only(left: 12, top: 20, bottom: 20, right: 20),
-        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.only(left: 12, top: 20, bottom: 20, right: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(32),
             topRight: Radius.circular(32),
@@ -66,7 +66,7 @@ class ChatBubleForFriend extends StatelessWidget {
         ),
         child: Text(
           message.message1,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),

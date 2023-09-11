@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../constants.dart';
+import '../cubit/chat/chat_cubit.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 import 'chat_page.dart';
@@ -35,6 +36,7 @@ class LoginPageState extends StatelessWidget {
            isLoading = false;
          }if(state is Loginsuccess){
            isLoading = true;
+           BlocProvider.of<ChatCubit>(context).getdata();
            Navigator.pushReplacementNamed(context, Chat.id,arguments:email);
          }if(state is Loginloading){
            isLoading = false;

@@ -35,7 +35,7 @@ class RegisterPageState extends StatelessWidget {
         isLoading = false;
       }if(state is Registersuccess){
         isLoading = true;
-        Navigator.pushReplacementNamed(context, Chat.id,arguments:email);
+        Navigator.pushReplacementNamed(context, LoginPageState.id,arguments:email);
       }if(state is Registerloading){
         isLoading = false;
       }

@@ -18,12 +18,17 @@ class ChatCubit extends Cubit<ChatState> {
       "id" : email,
     });
 
+
+
   }
   getdata(){
     messages.orderBy("Time",descending: true).snapshots().listen((event) {
+      messagess.clear();
       for(var doc  in event.docs){
         messagess.add(Message1.fromjosn(doc));
       }
+
+      emit(Chatsuccess());
     }
     );
   }
